@@ -1,18 +1,28 @@
 package kz.lab.petproject;
 
-import kz.lab.petproject.controllers.SimpleController;
-import org.apache.catalina.core.ApplicationContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
+
 
 @SpringBootApplication
 public class LabPetProjectApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(LabPetProjectApplication.class, args);
-        SimpleController controller = context.getBean(SimpleController.class);
-        controller.hello();
+        SpringApplication.run(LabPetProjectApplication.class, args);
+
+        // План на занятие модуль 2.2 (занятие 6)
+        // lombok, компиляция, delombok
+        // вызов публичного апи: postman, idea endpoints
+        // exception: handler, advice, status
+        // optional
+        // spring data: starter и h2
+        // entity и repository
+        // небольшой пример юнит-теста
+        // mapstruct: маппинг между бесчисленными pojo - можно увидеть при компиляции
+        // как вариант также есть ModelMapper - работает динамически через рефлексию
+        // dto: bean validation, @Validated, кастомная ошибка
+        // entity: bean validation - когда сложно сделать валидацию на dto
+
     }
 
 }

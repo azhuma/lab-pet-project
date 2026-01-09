@@ -1,8 +1,7 @@
 package kz.lab.petproject.controllers;
 
+import kz.lab.petproject.exceptions.NotFoundException;
 import kz.lab.petproject.services.HelloService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +19,7 @@ public class SimpleController {
     public String hello() {
         String result = service.hello();
         System.out.println(result);
-        return result;
+        throw new NotFoundException();
+        //return result;
     }
 }
