@@ -19,8 +19,8 @@ public class Product {
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Integer id;
 
-    //@NotNull
-    //@NotBlank
+    @NotNull
+    @NotBlank
     private String name;
 
     private Double price;

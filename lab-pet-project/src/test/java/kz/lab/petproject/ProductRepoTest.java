@@ -18,7 +18,7 @@ public class ProductRepoTest {
     @Test
     void testAddProduct() {
         Product product = productRepo.save(Product.builder()
-                .name("water")
+                .name("")
                 .price(3.14)
                 .build());
 
