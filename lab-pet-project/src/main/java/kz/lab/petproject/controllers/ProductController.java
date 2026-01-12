@@ -2,6 +2,7 @@ package kz.lab.petproject.controllers;
 
 import kz.lab.petproject.exceptions.NotFoundException;
 import kz.lab.petproject.models.ProductDto;
+import kz.lab.petproject.models.ProductPostDto;
 import kz.lab.petproject.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/product")
+@RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
 public class ProductController {
 
@@ -32,9 +33,9 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity addProduct(@RequestBody ProductDto productDto) {
+    public ResponseEntity addProduct(@RequestBody ProductPostDto productPostDto) {
 
-        ProductDto product = productService.addProduct(productDto);
+        ProductDto product = productService.addProduct(productPostDto);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location",  "/api/v1/product/" + product.getId().toString());

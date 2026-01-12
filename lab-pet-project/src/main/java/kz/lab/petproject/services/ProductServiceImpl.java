@@ -2,6 +2,7 @@ package kz.lab.petproject.services;
 
 import kz.lab.petproject.mappers.ProductMapper;
 import kz.lab.petproject.models.ProductDto;
+import kz.lab.petproject.models.ProductPostDto;
 import kz.lab.petproject.repos.ProductRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -40,10 +41,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto addProduct(ProductDto productDto) {
+    public ProductDto addProduct(ProductPostDto productPostDto) {
         return productMapper.toDto(
                 productRepo.save(
-                        productMapper.toEntity(productDto)
+                        productMapper.toEntity(productPostDto)
                 )
         );
     }
