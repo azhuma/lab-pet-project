@@ -1,5 +1,7 @@
 package kz.lab.petproject.services;
 
+import io.micrometer.common.util.StringUtils;
+import kz.lab.petproject.entities.Product;
 import kz.lab.petproject.mappers.ProductMapper;
 import kz.lab.petproject.models.ProductDto;
 import kz.lab.petproject.models.ProductPostDto;
@@ -21,9 +23,17 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public List<ProductDto> listProducts() {
-        return productRepo
-                .findAll()
+    public List<ProductDto> listProducts(String name) {
+        List<Product> list;
+
+        if (StringUtils.isBlank(name)) {
+            list = productRepo.findAll();
+        } else {
+            //list = productRepo.findAllByNameContainsIgnoreCase(name);
+            list = productRepo.retrieveProductsWithExactName(name);
+        }
+
+        return list
                 .stream()
                 .map(productMapper::toDto)
                 .toList();

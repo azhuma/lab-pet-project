@@ -2,6 +2,8 @@ package kz.lab.petproject.controllers;
 
 import kz.lab.petproject.exceptions.NotFoundException;
 import kz.lab.petproject.services.HelloService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,11 +17,13 @@ public class SimpleController {
 
     private HelloService service;
 
-    @RequestMapping("/hello")
+    @GetMapping("/hello")
     public String hello() {
-        String result = service.hello();
-        System.out.println(result);
-        throw new NotFoundException();
-        //return result;
+        return "hi";
+    }
+
+    @GetMapping("/call/{id}")
+    public String callService(@PathVariable("id") int id) {
+        return service.callExternalService(id);
     }
 }

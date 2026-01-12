@@ -8,7 +8,7 @@ import java.util.Optional;
 
 
 public interface ProductService {
-    List<ProductDto> listProducts();
+    List<ProductDto> listProducts(String name);
     Optional<ProductDto> getProduct(int id);
     ProductDto addProduct(ProductPostDto productPostDto);
 }

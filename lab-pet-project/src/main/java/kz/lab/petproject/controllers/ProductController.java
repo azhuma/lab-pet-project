@@ -28,8 +28,8 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<ProductDto> getProducts() {
-        return productService.listProducts();
+    public List<ProductDto> getProducts(@RequestParam(required = false) String name) {
+        return productService.listProducts(name);
     }
 
     @PostMapping
