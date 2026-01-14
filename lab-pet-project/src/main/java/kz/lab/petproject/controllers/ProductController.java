@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,7 @@ public class ProductController {
     }
 
     @GetMapping
+    //@PreAuthorize("hasRole('ADMIN')")
     public List<ProductDto> getProducts(@RequestParam(required = false) String name) {
         return productService.listProducts(name);
     }
