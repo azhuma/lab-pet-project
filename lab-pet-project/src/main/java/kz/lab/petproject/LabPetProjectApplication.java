@@ -27,6 +27,7 @@ public class LabPetProjectApplication {
         // https://springdoc.org/faq.html#_what_is_the_compatibility_matrix_of_springdoc_openapi_with_spring_boot
         // boot: automatic spec - json or yaml
         // http://localhost:8080/v3/api-docs
+        // http://localhost:8080/swagger-ui/index.html#
         // Open API generator
         // https://openapi-generator.tech/
 
