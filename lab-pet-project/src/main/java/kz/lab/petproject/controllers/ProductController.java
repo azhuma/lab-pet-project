@@ -29,7 +29,7 @@ public class ProductController {
     }
 
     @GetMapping
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     public List<ProductDto> getProducts(@RequestParam(required = false) String name) {
         return productService.listProducts(name);
     }
