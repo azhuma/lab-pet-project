@@ -46,6 +46,7 @@ public class ConcurrencyRunner implements CommandLineRunner {
         // Runnable - функциональный интерфейс
         // самая ранняя реализация потоков
         // главный минус - не возвращает напрямую результат
+        // что надо делать, чтобы вернуть результат в основной поток?
 
         System.out.println("demoSimpleRunnable started");
         Runnable job = () -> {
