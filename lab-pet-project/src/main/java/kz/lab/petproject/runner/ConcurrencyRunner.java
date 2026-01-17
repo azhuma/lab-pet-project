@@ -25,7 +25,7 @@ public class ConcurrencyRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //demoSimpleRunnable();
-        //demoThreadPool();
+        demoThreadPool();
         //demoLostUpdate();
         //demoStream();
         //demoCompletableFuture();
@@ -98,6 +98,11 @@ public class ConcurrencyRunner implements CommandLineRunner {
                 }
             }
         }
+
+//        for (var future : futures) {
+//            System.out.println("x: " + future.get());
+//        }
+
         Instant end = Instant.now();
         Duration timeElapsed = Duration.between(start, end);
         System.out.println("Time elapsed: " + timeElapsed.toMillis());
