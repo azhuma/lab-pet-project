@@ -31,7 +31,8 @@ public class ProductController {
     @GetMapping
     @PreAuthorize("hasRole('USER')")
     public List<ProductDto> getProducts(@RequestParam(required = false) String name) {
-        return productService.listProducts(name);
+        var products = productService.listProducts(name);
+        return products;
     }
 
     @PostMapping

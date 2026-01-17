@@ -7,6 +7,7 @@ import kz.lab.petproject.models.ProductDto;
 import kz.lab.petproject.models.ProductPostDto;
 import kz.lab.petproject.repos.ProductRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,6 +24,7 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
+    //@Async
     public List<ProductDto> listProducts(String name) {
         List<Product> list;
 
