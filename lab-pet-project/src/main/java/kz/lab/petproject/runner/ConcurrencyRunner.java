@@ -25,7 +25,7 @@ public class ConcurrencyRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //demoSimpleRunnable();
-        demoThreadPool();
+        //demoThreadPool();
         //demoLostUpdate();
         //demoStream();
         //demoCompletableFuture();
@@ -83,6 +83,9 @@ public class ConcurrencyRunner implements CommandLineRunner {
         List<Future<Integer>> futures = new ArrayList<>();
 
         Instant start = Instant.now();
+        ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
+        exec.scheduleAtFixedRate(() -> System.out.println("tick"), 0, 1, TimeUnit.SECONDS);
+
         try (ExecutorService threadPool = Executors.newSingleThreadExecutor()) {
         //try (ExecutorService threadPool = Executors.newFixedThreadPool(3)) {
             for (int i = 0; i < 10; i++) {
@@ -208,13 +211,13 @@ public class ConcurrencyRunner implements CommandLineRunner {
 
         // 3
         // chain in fluent api - Completion Stage API
-//        var t = CompletableFuture
-//                .supplyAsync(() -> "done 1")
-//                .thenApplyAsync(x -> x + " 2")
-//                .thenApplyAsync(x -> x + " 3")
-//                .thenApplyAsync(x -> x + " 4")
-//                .thenApplyAsync(x -> x + " 5");
-//        System.out.println("result=" + t.get());
+        var t = CompletableFuture
+                .supplyAsync(() -> "done 1")
+                .thenApplyAsync(x -> x + " 2")
+                .thenApplyAsync(x -> x + " 3")
+                .thenApplyAsync(x -> x + " 4")
+                .thenApplyAsync(x -> x + " 5");
+        System.out.println("result=" + t.get());
 
         // 4
         // еще пример

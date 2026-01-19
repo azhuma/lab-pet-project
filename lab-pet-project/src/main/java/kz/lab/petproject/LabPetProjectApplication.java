@@ -12,12 +12,9 @@ public class LabPetProjectApplication {
     public static void main(String[] args) {
         SpringApplication.run(LabPetProjectApplication.class, args);
 
-        // План на занятие модуль 2.5 (занятие 9)
-        // отключить security
-        // отключить логи спринга
+        // План на занятие модуль 2.6 (занятие 10)
+        // создать новый проект на flux
 
-        // имплементировать command line runner
-        // где разобрать базовые понятия многопоточности
     }
 
 }
