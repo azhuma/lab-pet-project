@@ -28,7 +28,7 @@ public class ConcurrencyRunner implements CommandLineRunner {
         //demoThreadPool();
         //demoLostUpdate();
         //demoStream();
-        //demoCompletableFuture();
+        demoCompletableFuture();
     }
 
     @SneakyThrows
@@ -113,8 +113,8 @@ public class ConcurrencyRunner implements CommandLineRunner {
 
     @Getter
     private static class MyThread implements Runnable {
-        private int value = 0;
-        //private AtomicInteger atomicInteger = new AtomicInteger(0);
+        //private int value = 0;
+        private AtomicInteger atomicInteger = new AtomicInteger(0);
 
         @Override
         public void run() {
@@ -126,10 +126,10 @@ public class ConcurrencyRunner implements CommandLineRunner {
 
         // not synchronized
         public void increment() {
-            int i = value;
-            value = i + 1;
+            //int i = value;
+            //value = i + 1;
             //value++;
-            //atomicInteger.getAndIncrement();
+            atomicInteger.getAndIncrement();
         }
     }
 
@@ -144,8 +144,8 @@ public class ConcurrencyRunner implements CommandLineRunner {
         t1.join();
         t2.join();
 
-        System.out.println(myThread.getValue());
-        //System.out.println(myThread.getAtomicInteger());
+        //System.out.println(myThread.getValue());
+        System.out.println(myThread.getAtomicInteger());
     }
 
     private void demoStream() {
@@ -157,7 +157,7 @@ public class ConcurrencyRunner implements CommandLineRunner {
                 .parallel()
                 .unordered()
                 .forEach(value -> myThread.increment());
-        System.out.println(myThread.getValue());
+        //System.out.println(myThread.getValue());
     }
 
     private final ExecutorService pool = Executors.newFixedThreadPool(10);
@@ -192,10 +192,10 @@ public class ConcurrencyRunner implements CommandLineRunner {
         // Completable Future позволяет строить цепочки, комбинации итд
 
         // 1
-        Future<String> future = executeAsync();
-        //Future<String> future = executeAsyncCompletable();
-        System.out.println(future.get());
-        System.out.println("continue running main thread...");
+        //Future<String> future = executeAsync();
+//        Future<String> future = executeAsyncCompletable();
+//        System.out.println(future.get());
+//        System.out.println("continue running main thread...");
 
         // 2
 //        System.out.println("starting async task from main thread: " + Thread.currentThread().getName());
@@ -211,25 +211,25 @@ public class ConcurrencyRunner implements CommandLineRunner {
 
         // 3
         // chain in fluent api - Completion Stage API
-        var t = CompletableFuture
-                .supplyAsync(() -> "done 1")
-                .thenApplyAsync(x -> x + " 2")
-                .thenApplyAsync(x -> x + " 3")
-                .thenApplyAsync(x -> x + " 4")
-                .thenApplyAsync(x -> x + " 5");
-        System.out.println("result=" + t.get());
+//        var t = CompletableFuture
+//                .supplyAsync(() -> "done 1")
+//                .thenApplyAsync(x -> x + " 2")
+//                .thenApplyAsync(x -> x + " 3")
+//                .thenApplyAsync(x -> x + " 4")
+//                .thenApplyAsync(x -> x + " 5");
+//        System.out.println("result=" + t.get());
 
         // 4
         // еще пример
-//        var cf1 = CompletableFuture.supplyAsync(() -> "cf 1");
-//        var cf2 = CompletableFuture.supplyAsync(() -> "cf 2");
-//
-//        var cf3 = cf1.thenComposeAsync(x -> cf2);
-//        System.out.println(cf3.get());
-//
-//        var cf4 = cf1.thenComposeAsync(
-//                x -> CompletableFuture.supplyAsync(() -> x + " cf 2")
-//        );
-//        System.out.println(cf4.get());
+        var cf1 = CompletableFuture.supplyAsync(() -> "cf 1");
+        var cf2 = CompletableFuture.supplyAsync(() -> "cf 2");
+
+        var cf3 = cf1.thenComposeAsync(x -> cf2);
+        System.out.println(cf3.get());
+
+        var cf4 = cf1.thenComposeAsync(
+                x -> CompletableFuture.supplyAsync(() -> x + " cf 2")
+        );
+        System.out.println(cf4.get());
     }
 }
