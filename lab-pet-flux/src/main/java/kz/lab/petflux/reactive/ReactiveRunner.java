@@ -28,7 +28,7 @@ public class ReactiveRunner implements CommandLineRunner {
         //demo8();
         //demo9();
         //demo10();
-        //demo11();
+        demo11();
     }
 
     private void demo1() {
@@ -60,7 +60,7 @@ public class ReactiveRunner implements CommandLineRunner {
     }
 
     private void demo4() throws InterruptedException {
-        // делаем запрос на получение элементов больше 10
+        // делаем запрос после выхода
         var pub = new PublisherImpl();
         var sub = new SubscriberImpl();
         pub.subscribe(sub);
@@ -71,7 +71,7 @@ public class ReactiveRunner implements CommandLineRunner {
     }
 
     private void demo5() {
-        // пробуем моно с кастомный подписчиком
+        // пробуем моно с кастомным подписчиком
         var mono = Mono.just("kaspilab"); // заполняем данными
         var sub = new SubscriberImpl();
         mono.subscribe(sub);
@@ -104,7 +104,7 @@ public class ReactiveRunner implements CommandLineRunner {
     }
 
     private void demo7() {
-        // есть различныне фабричные методы
+        // есть различные фабричные методы
         // также создали дженерик свбскрайбер с автоматическим вызовом реквеста
 
         var list = List.of(1, 2, 3);
@@ -141,8 +141,8 @@ public class ReactiveRunner implements CommandLineRunner {
 
         Flux.range(1, 5)
                 .log()
-                //.map(i -> Util.faker().name().firstName())
-                //.log()
+                .map(i -> Util.faker().name().firstName())
+                .log()
                 .subscribe(Util.subscriber());
     }
 
