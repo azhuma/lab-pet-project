@@ -10,8 +10,8 @@ public class Merge {
 
     public static void main(String[] args) {
 
-        demo1();
-        //demo2();
+        //demo1();
+        demo2();
         Util.sleepSeconds(3);
     }
 
@@ -22,10 +22,11 @@ public class Merge {
     }
 
     private static void demo2() {
-        producer2().mergeWith(producer1())
-                   .mergeWith(producer3())
-                   .take(20)
-                   .subscribe(Util.subscriber());
+        producer2()
+                .mergeWith(producer1())
+                //.mergeWith(producer3())
+                .take(5)
+                .subscribe(Util.subscriber());
     }
 
     private static Flux<Integer> producer1() {
@@ -35,7 +36,7 @@ public class Merge {
     }
 
     private static Flux<Integer> producer2() {
-        return Flux.just(10, 20, 303)
+        return Flux.just(10, 20, 30)
                    .transform(Util.fluxLogger("producer2"))
                    .delayElements(Duration.ofMillis(10));
     }
