@@ -2,6 +2,7 @@ package kz.lab.petflux.entities;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 
 @Getter
@@ -9,9 +10,11 @@ import org.springframework.data.annotation.Id;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Document
 public class Product {
     @Id
-    private Integer id;
+    //private Integer id;
+    private String id;
 
     private String name;
 

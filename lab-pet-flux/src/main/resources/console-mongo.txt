@@ -1,0 +1,48 @@
+// это бд в приложении
+db.getSiblingDB("admin").getCollection("product")
+    .find({"name":"water"});
+
+db.product.find({name:"wood"});
+
+db.product.find({price: { $gt: 10}});
+
+select name from product where price < 30;
+
+
+// здесь просто команды для работы с консоли
+// создать коллекцию явно
+// схему не определяем
+db.createCollection("user");
+db.user.drop();
+
+// динамически
+// поле id создается автоматически
+db.student.insertOne({name:"John", address:"almaty"});
+db.student.insertOne({name:"Bob", phone:"55599991010"});
+db.student.insertOne({
+    name: "Alice",
+    degree: "master",
+    department: {
+        dep_name: "SE",
+        dep_location: "Almaty"
+    }
+});
+
+db.student.find();
+
+db.student.find({_id: ObjectId("697751901d3a846e761f28ac")});
+
+db.student.updateOne(
+    {
+        name: "John"
+    },
+    {
+        $set: {
+            degree: "master"
+        }
+    }
+);
+
+db.student.find({ "department.dep_name": "SE"});
+
+db.student.drop();

@@ -34,7 +34,7 @@ public class ProductController {
         return productService.addProduct(productPostDto)
                 .map(savedDto -> ResponseEntity.created(
                         UriComponentsBuilder
-                                .fromHttpUrl("http://localhost:8080/api/v1/product/" + "/" + savedDto.getId())
+                                .fromHttpUrl("http://localhost:8080/api/v2/product/" + "/" + savedDto.getId())
                                 .build().toUri())
                         .build());
     }
