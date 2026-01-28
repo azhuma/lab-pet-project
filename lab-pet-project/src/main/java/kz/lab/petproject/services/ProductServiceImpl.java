@@ -21,6 +21,7 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepo productRepo;
     private final ProductMapper productMapper;
+    private final KafkaService kafkaService;
 
 
     @Override
@@ -54,10 +55,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto addProduct(ProductPostDto productPostDto) {
-        return productMapper.toDto(
+        var result =  productMapper.toDto(
                 productRepo.save(
                         productMapper.toEntity(productPostDto)
                 )
         );
+
+        kafkaService.sendMessage(productMapper.toEvent(result));
+
+        return result;
     }
 }

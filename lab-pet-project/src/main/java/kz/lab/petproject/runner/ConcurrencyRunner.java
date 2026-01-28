@@ -28,7 +28,7 @@ public class ConcurrencyRunner implements CommandLineRunner {
         //demoThreadPool();
         //demoLostUpdate();
         //demoStream();
-        demoCompletableFuture();
+        //demoCompletableFuture();
     }
 
     @SneakyThrows
