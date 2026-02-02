@@ -19,30 +19,42 @@ import org.springframework.security.web.SecurityFilterChain;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import static org.springframework.security.config.Customizer.withDefaults;
 
-@Profile("!local")
+
+//@Profile("!local")
 @Configuration
 @EnableMethodSecurity
 @Slf4j
 public class SecurityConfig {
 
+
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(authorize -> {
-                    authorize.anyRequest().authenticated();
-                })
+        http
+                .authorizeHttpRequests(authz -> authz
+                        // Configure access rules for your application and actuator endpoints
+                        .anyRequest().permitAll()
+                )
+                .httpBasic(withDefaults()); // Or use formLogin() or other methods
+        return http.build();
+
+//        http.authorizeHttpRequests(authorize -> {
+//                    authorize.anyRequest().authenticated();
+//                })
 //                .oauth2ResourceServer(oauth2 -> {
 //                    oauth2.jwt(Customizer.withDefaults());
 //                });
-                .oauth2ResourceServer(oauth2 -> {
-                    oauth2
-                            .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()));
-                });
+//                .oauth2ResourceServer(oauth2 -> {
+//                    oauth2
+//                            .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()));
+//                });
 
-            return http.build();
+            //return http.build();
     }
 
-    @Bean
+    //@Bean
     public Converter<Jwt,? extends AbstractAuthenticationToken> jwtAuthenticationConverter() {
         // Use the default converter for scopes/roles
         JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
