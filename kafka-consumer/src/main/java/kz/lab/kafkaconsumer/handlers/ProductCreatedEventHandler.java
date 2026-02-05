@@ -1,7 +1,7 @@
 package kz.lab.kafkaconsumer.handlers;
 
 
-import kz.lab.kafkaconsumer.models.ProductCreatedEvent;
+import kz.lab.petproject.models.ProductCreatedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
